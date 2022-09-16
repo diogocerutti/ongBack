@@ -1,6 +1,9 @@
+const Animal = require("./animal");
+const User = require("./user");
+
 module.exports = (sequelize, Sequelize) => {
   const Treatment = sequelize.define(
-    "treatment",
+    "animal",
     {
       treatment_id: {
         type: Sequelize.BIGINT,
@@ -11,7 +14,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.BIGINT,
         allowNull: false,
         references: {
-          model: "user",
+          model: User,
           key: "user_id",
         },
       },
@@ -19,22 +22,20 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.BIGINT,
         allowNull: false,
         references: {
-          model: "animal",
+          model: Animal,
           key: "animal_id",
         },
-      },
-      description: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        required: true,
       },
       date: {
         type: Sequelize.DATE,
         allowNull: false,
-        required: true,
       },
       time: {
         type: Sequelize.TIME,
+        allowNull: false,
+      },
+      description: {
+        type: Sequelize.STRING,
       },
       cost: {
         type: Sequelize.FLOAT,

@@ -1,3 +1,6 @@
+const Specie = require("./specie");
+const Breed = require("./breed");
+
 module.exports = (sequelize, Sequelize) => {
   const Animal = sequelize.define(
     "animal",
@@ -16,7 +19,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.BIGINT,
         allowNull: false,
         references: {
-          model: "specie",
+          model: Specie,
           key: "specie_id",
         },
       },
@@ -24,13 +27,12 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.BIGINT,
         allowNull: false,
         references: {
-          model: "breed",
+          model: Breed,
           key: "breed_id",
         },
       },
       image: {
         type: Sequelize.BLOB,
-        allowNull: false,
       },
       description: {
         type: Sequelize.STRING,
@@ -44,7 +46,6 @@ module.exports = (sequelize, Sequelize) => {
     {
       freezeTableName: true,
       timestamps: false,
-      defaultValue: 0.0,
     }
   );
 

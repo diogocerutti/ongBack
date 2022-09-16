@@ -43,7 +43,6 @@ const SignUp = async (req, res, next) => {
     }
 
     next();
-    console.log(next);
   } catch (error) {
     res.json(error);
   }

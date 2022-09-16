@@ -55,7 +55,7 @@ exports.findOne = (req, res) => {
       });
     });
 };
-// Update a Tutorial by the id in the request
+
 exports.update = (req, res) => {
   if (!req.body.name) {
     res.status(400).send({
@@ -92,6 +92,7 @@ exports.update = (req, res) => {
       });
     });
 };
+
 exports.delete = (req, res) => {
   const breed_id = req.params.breed_id;
   Breed.destroy({
