@@ -30,6 +30,7 @@ const PORT = process.env.PORT || 8080;
 require("./app/routes/breed.js")(app);
 require("./app/routes/specie.js")(app);
 require("./app/routes/user.js")(app);
+require("./app/routes/animal.js")(app);
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}.`);
 });
