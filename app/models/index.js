@@ -19,4 +19,5 @@ db.breed = require("./breed.js")(sequelize, Sequelize);
 db.specie = require("./specie.js")(sequelize, Sequelize);
 db.treatment = require("./treatment.js")(sequelize, Sequelize);
 db.user = require("./user.js")(sequelize, Sequelize);
+db.treatment_type = require("./treatment_type.js")(sequelize, Sequelize);
 module.exports = db;

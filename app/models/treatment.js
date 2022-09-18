@@ -1,9 +1,10 @@
 const Animal = require("./animal");
 const User = require("./user");
+const TreatmentType = require("./treatment_type");
 
 module.exports = (sequelize, Sequelize) => {
   const Treatment = sequelize.define(
-    "animal",
+    "treatment",
     {
       treatment_id: {
         type: Sequelize.BIGINT,
@@ -24,6 +25,14 @@ module.exports = (sequelize, Sequelize) => {
         references: {
           model: Animal,
           key: "animal_id",
+        },
+      },
+      type_id: {
+        type: Sequelize.BIGINT,
+        allowNull: false,
+        references: {
+          model: TreatmentType,
+          key: "type_id",
         },
       },
       date: {

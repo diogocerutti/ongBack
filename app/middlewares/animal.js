@@ -27,7 +27,10 @@ const Create = async (req, res, next) => {
 
     next();
   } catch (error) {
-    res.json(error), console.log(error);
+    res.json({
+      error: "Verifique possíveis campos em branco!",
+      query: error.sql,
+    });
   }
 };
 

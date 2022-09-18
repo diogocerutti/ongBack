@@ -1,55 +1,46 @@
 const db = require("../models");
+const Treatment = db.treatment;
 const Animal = db.animal;
 const User = db.user;
-const Op = db.Sequelize.Op;
+const TreatmentType = db.treatment_type;
+const { validationResult } = require("express-validator");
 
-Animal.hasMany(Breed, {
-  foreignKey: "breed_id",
+Treatment.hasMany(User, {
+  foreignKey: "user_id",
 });
 
-Animal.belongsTo(Specie, {
-  foreignKey: "specie_id",
+Treatment.hasMany(Animal, {
+  foreignKey: "animal_id",
+});
+
+Treatment.hasMany(TreatmentType, {
+  foreignKey: "type_id",
 });
 
 exports.Create = async (req, res) => {
-  if (!req.body.nickname) {
-    res.status(400).send({
-      message: "Apelido do animal não pode ser vazio!",
-    });
-    return;
-  }
-  if (!req.body.breed_id) {
-    res.status(400).send({
-      message: "Insira o ID da raça!",
-    });
-    return;
-  }
-  if (!req.body.specie_id) {
-    res.status(400).send({
-      message: "Insira o ID da espécie!",
-    });
-    return;
-  }
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.json(errors);
+      return;
+    }
 
-  const animal = {
-    nickname: req.body.nickname,
-    description: req.body.description,
-    outgoing: req.body.outgoing,
-    breed_id: req.body.breed_id,
-    specie_id: req.body.specie_id,
-    image: req.body.image,
-  };
+    const treatment = {
+      description: req.body.description,
+      cost: req.body.cost,
+      user_id: req.body.user_id,
+      animal_id: req.body.animal_id,
+      type_id: req.body.type_id,
+      date: req.body.date,
+      time: req.body.time,
+    };
 
-  Animal.create(animal)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || "Ocorreu algum erro ao tentar inserir o animal!",
-      });
+    Treatment.create(treatment).then((data) => {
+      res.json({ message: "Atendimento cadastrado: ", data });
     });
+  } catch (error) {
+    res.json(error);
+  }
 };
 
 exports.findAll = (req, res) => {};

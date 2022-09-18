@@ -1,7 +1,7 @@
 const User = require("../controllers/user.js");
 const Middlewares = require("../middlewares/user");
 const Errors = require("../errors/user");
-var router = require("express").Router();
+const router = require("express").Router();
 const { checkSchema } = require("express-validator");
 
 module.exports = (app) => {

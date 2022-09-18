@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 const User = db.user;
-const Op = db.Sequelize.Op;
 const Errors = require("../errors/user");
 
 exports.SignUp = async (req, res) => {

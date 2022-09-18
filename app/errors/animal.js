@@ -1,12 +1,17 @@
 exports.Create = {
-  breed_id: {
+  nickname: {
     notEmpty: {
-      errorMessage: "Raça do animal obrigatória!",
+      errorMessage: "Apelido do animal obrigatório!",
+    },
+  },
+  breed_id: {
+    isInt: {
+      errorMessage: "ID da raça não pode ser vazio e deve ser um número!",
     },
   },
   specie_id: {
-    notEmpty: {
-      errorMessage: "Espécie do animal obrigatória!",
+    isInt: {
+      errorMessage: "ID da espécie não pode ser vazio e deve ser um número!",
     },
   },
 };
