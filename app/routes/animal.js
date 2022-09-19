@@ -11,5 +11,9 @@ module.exports = (app) => {
     Middlewares.Create,
     Animal.Create
   );
+  router.get("/", Animal.FindAll);
+  router.get("/:animal_id", Animal.FindOne);
+  router.put("/:animal_id", checkSchema(Errors.Create), Animal.Update);
+  router.delete("/:animal_id", Middlewares.Delete, Animal.Delete);
   app.use("/animal", router); // apelido para todas as rotas (o que vem antes)
 };

@@ -64,3 +64,10 @@ exports.LoginExists = {
     error: "Nome de usuário ou senha inválidos!",
   },
 };
+
+exports.Delete = {
+  user_id: {
+    error:
+      "Usuário não pode ser excluído pois possui dependências na tabela de atendimento!",
+  },
+};

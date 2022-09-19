@@ -24,3 +24,10 @@ exports.CreateExists = {
     error: "Não existe espécie com esse ID!",
   },
 };
+
+exports.Delete = {
+  animal_id: {
+    error:
+      "Animal não pode ser excluído pois tem dependências na tabela de atendimento!",
+  },
+};

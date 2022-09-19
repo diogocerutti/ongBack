@@ -2,6 +2,7 @@ const db = require("../models");
 const Errors = require("../errors/animal");
 const Breed = db.breed;
 const Specie = db.specie;
+const Treatment = db.treatment;
 
 const Create = async (req, res, next) => {
   try {
@@ -34,6 +35,28 @@ const Create = async (req, res, next) => {
   }
 };
 
+const Delete = async (req, res, next) => {
+  try {
+    const animal_id = await Treatment.findOne({
+      where: {
+        animal_id: req.params.animal_id,
+      },
+    });
+
+    if (animal_id) {
+      return res.json(Errors.Delete.animal_id);
+    }
+
+    next();
+  } catch (error) {
+    res.json({
+      error: "Verifique se o animal_id passado por parâmetro está correto!",
+      query: error.sql,
+    });
+  }
+};
+
 module.exports = {
   Create,
+  Delete,
 };

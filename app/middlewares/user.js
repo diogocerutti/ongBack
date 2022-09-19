@@ -1,6 +1,7 @@
 const db = require("../models");
 const Errors = require("../errors/user");
 const User = db.user;
+const Treatment = db.treatment;
 
 // Verificar se o username, email ou CPF fornecidos já existem no banco
 // Pois só pode existir um usuário com as mesmas informações
@@ -48,6 +49,28 @@ const SignUp = async (req, res, next) => {
   }
 };
 
+const Delete = async (req, res, next) => {
+  try {
+    const user_id = await Treatment.findOne({
+      where: {
+        user_id: req.params.user_id,
+      },
+    });
+
+    if (user_id) {
+      return res.json(Errors.Delete.user_id);
+    }
+
+    next();
+  } catch (error) {
+    res.json({
+      error: "Verifique se o user_id passado por parâmetro está correto!",
+      query: error.sql,
+    });
+  }
+};
+
 module.exports = {
   SignUp,
+  Delete,
 };

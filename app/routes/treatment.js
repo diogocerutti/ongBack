@@ -11,5 +11,9 @@ module.exports = (app) => {
     Middlewares.Create,
     Treatment.Create
   );
+  router.get("/", Treatment.FindAll);
+  router.get("/:treatment_id", Treatment.FindOne);
+  router.put("/:treatment_id", checkSchema(Errors.Create), Treatment.Update);
+  router.delete("/:treatment_id", Treatment.Delete);
   app.use("/treatment", router); // apelido para todas as rotas (o que vem antes)
 };

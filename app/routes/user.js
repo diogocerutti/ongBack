@@ -15,6 +15,6 @@ module.exports = (app) => {
   router.get("/", User.FindAll);
   router.get("/:user_id", User.FindOne);
   router.put("/:user_id", User.Update);
-  router.delete("/:user_id", User.Delete);
+  router.delete("/:user_id", Middlewares.Delete, User.Delete);
   app.use("/user", router); // apelido para todas as rotas (o que vem antes)
 };

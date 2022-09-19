@@ -1,8 +1,7 @@
 const db = require("../models");
 const Breed = db.breed;
-const Op = db.Sequelize.Op;
 
-exports.create = (req, res) => {
+exports.Create = (req, res) => {
   if (!req.body.name) {
     res.status(400).send({
       message: "Nome não pode ser vazio!",
@@ -24,7 +23,7 @@ exports.create = (req, res) => {
     });
 };
 
-exports.findAll = (req, res) => {
+exports.FindAll = (req, res) => {
   Breed.findAll({ raw: true, order: [["breed_id", "ASC"]] })
     .then((data) => {
       res.send(data);
@@ -36,7 +35,7 @@ exports.findAll = (req, res) => {
     });
 };
 
-exports.findOne = (req, res) => {
+exports.FindOne = (req, res) => {
   const breed_id = req.params.breed_id;
   Breed.findByPk(breed_id)
     .then((data) => {
@@ -56,7 +55,7 @@ exports.findOne = (req, res) => {
     });
 };
 
-exports.update = (req, res) => {
+exports.Update = (req, res) => {
   if (!req.body.name) {
     res.status(400).send({
       message: "O novo nome da raça não pode ser vazio!",
@@ -93,7 +92,7 @@ exports.update = (req, res) => {
     });
 };
 
-exports.delete = (req, res) => {
+exports.Delete = (req, res) => {
   const breed_id = req.params.breed_id;
   Breed.destroy({
     where: { breed_id: breed_id },
