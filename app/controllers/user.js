@@ -28,7 +28,7 @@ exports.SignUp = async (req, res) => {
       const token = jwt.sign({ id: user.user_id }, config.secret, {
         expiresIn: 1 * 24 * 60 * 60 * 1000,
       });
-      res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true }); // 3 horas
+      //res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true }); // 3 horas
 
       return res
         .status(201)
@@ -63,7 +63,7 @@ exports.Login = async (req, res) => {
           expiresIn: 1 * 24 * 60 * 60 * 1000,
         });
 
-        res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true });
+        //res.cookie("jwt", token, { maxAge: 1 * 24 * 60 * 60, httpOnly: true });
 
         return res
           .status(201)
