@@ -67,7 +67,11 @@ exports.Login = async (req, res) => {
 
         return res
           .status(201)
-          .json({ message: "Logado com sucesso!", token: token });
+          .json({
+            message: "Logado com sucesso!",
+            token: token,
+            username: user.username,
+          });
       } else {
         return res.json(Errors.LoginExists);
       }
